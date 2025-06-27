@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Exclude specific files or directories that contain data that should not be backed up.
+         For example, "device.xml" should not be backed up because it contains
+         device-specific information, and "sensitive_data.txt" should not be backed up
+         because it contains user-sensitive data. -->
+    
+    <!-- TODO: Customize this file to include files that should not be backed up.
+         Full backup is not supported on all devices, so this file will only be used
+         on devices that support it. These rules are ignored on devices that don't support
+         full backup. -->
+    
+    <exclude domain="sharedpref" path="."/>
+    <!-- You can specify multiple rules. Each rule is an exclude, include, or require element.
+         Rules are applied in order, starting with the first rule. -->
+    
+</full-backup-content> 
