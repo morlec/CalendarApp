@@ -27,6 +27,17 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
+    - name: Create default icons if missing
+      run: |
+        # 确保图标目录存在
+        mkdir -p app/src/main/res/mipmap-{hdpi,mdpi,xhdpi,xxhdpi,xxxhdpi}
+        
+        # 如果图标文件不存在，创建空文件（Android会使用默认图标）
+        for dir in app/src/main/res/mipmap-*; do
+          touch "$dir/ic_launcher.png" 2>/dev/null || true
+          touch "$dir/ic_launcher_round.png" 2>/dev/null || true
+        done
+        
     - name: Build with Gradle
       run: ./gradlew assembleDebug
       
@@ -44,12 +55,27 @@ jobs:
         tag_name: v${{ github.run_number }}
         name: Release v${{ github.run_number }}
         body: |
-          Android APK for 纪念日日历应用
+          # 纪念日日历 Android 应用
           
-          ## 安装说明
+          ## 📱 应用功能
+          - 📅 全年日历视图
+          - 🎨 多类别纪念日标记
+          - ⏰ 自定义筹备期提醒
+          - 💾 离线数据存储
+          - 📱 响应式移动端设计
+          
+          ## 📥 安装说明
           1. 下载APK文件
           2. 在Android设备上启用"未知来源"应用安装
           3. 安装APK文件
+          4. 开始使用纪念日日历功能
+          
+          ## 🔧 系统要求
+          - Android 5.0 (API 21) 或更高版本
+          - 支持WebView的设备
+          
+          ## 📞 支持
+          如有问题，请在GitHub Issues中反馈。
         draft: false
         prerelease: false
       env:
